@@ -1,5 +1,5 @@
 <div class="col-md-6 mx-auto my-5">
-  <h1 class="text-center bold">Sign up</h1>
+  <h1 class="text-center bold text-primary mb-5">Sign up</h1>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource%>
     <div class="form-group row">
@@ -29,7 +29,7 @@
    </div>
    <div class="row">
      <div class="actions col-md-3">
-       <%= f.submit "Sign up", class:"btn btn-secondary" %>
+       <%= f.submit "Sign up", class:"btn btn-primary" %>
      </div>
     <div class="col">
       <%= render "devise/shared/links" %>
