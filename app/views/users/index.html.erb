@@ -1,9 +1,14 @@
 <h1 class="text-center mt-5">Users#index</h1>
-<h2>All Posts (own and friends)</h2>
-<% @posts.each do |p|%>
-  <%= p.user.fname %> <%= p.user.lname %>
-  <br>
-  <%= p.content %>
+<h2>Users list</h2>
+<% @users.each do |user| %>
+<p class="text-success">
+  *** <%= user.fname %> <%= user.lname %> ***  |
+  
+  <% if current_user.id != user.id%>
+    <%= link_to '#' do %>
+      <button class= "btn btn-success"> Send Friend Request? </button>
+    <% end %>
+  <% end %></p>
   <br><br>
-<% end %> 
+<% end %>  
 <h4 class="text-center mt-5"><%= link_to 'Log Out', destroy_user_session_path, method: :delete  %> </h4>

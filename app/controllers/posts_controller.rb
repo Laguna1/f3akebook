@@ -1,4 +1,10 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+
   def show
     @post = Post.find(params[:id])
   end
@@ -16,8 +22,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
@@ -25,4 +30,3 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content)
   end
 end
-
