@@ -1,3 +1,9 @@
 <h1 class="text-center mt-5">Users#index</h1>
-
+<h2>All Posts (own and friends)</h2>
+<% @posts.each do |p|%>
+  <%= p.user.fname %> <%= p.user.lname %>
+  <br>
+  <%= p.content %>
+  <br><br>
+<% end %> 
 <h4 class="text-center mt-5"><%= link_to 'Log Out', destroy_user_session_path, method: :delete  %> </h4>
