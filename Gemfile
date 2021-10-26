@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -11,8 +9,6 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Bootstrap
-gem 'bootstrap', '~> 4.4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -25,10 +21,18 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'rubocop'
 # Devise security gem
 gem 'devise'
-# Rubocop
-gem 'rubocop'
+# To handle images
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
+# Use omniauth-facebook gem allows Facebook login integration
+gem 'omniauth-facebook'
+# Allows access to twitter's Bootstrap framework
+gem 'bootstrap'
+# Hirb gem organizes the display for active record information into tables when using the rails console… eg. After opening rails console type Hirb.enable to activate it
+gem 'hirb'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -39,8 +43,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'database_cleaner'
-  gem 'rspec-rails'
 end
 
 group :development do
@@ -52,6 +54,19 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # RSpec Testing
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  # A Ruby gem to load environment variables from `.env` files.
+  gem 'dotenv-rails'
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 3.26'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
