@@ -1,3 +1,8 @@
 <h1>Posts#show</h1>
 <p>Find me in app/views/posts/show.html.erb</p>
 <p><%= @post.user.fname %> <%= @post.user.lname %> * * * <%= @post.content %></p>
+<p>
+      <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "You sure?" } %>
+        <i class="fas fa-trash hover-red"></i>
+      
+</p>
