@@ -10,4 +10,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  validates :fname, presence: true, length: { in: 3..15 }
+  validates :lname, presence: true, length: { in: 3..15 }
 end

@@ -17,11 +17,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    return unless current_user.id == comment.user_id
+    return unless current_user.id == @comment.user_id
 
     @comment.destroy
     flash[:success] = 'Comment deleted'
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private

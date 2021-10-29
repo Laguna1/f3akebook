@@ -7,6 +7,8 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+        <li class="nav-item"><%= link_to "All Posts", posts_path, class: "nav-link" %></li>
+         <li class="nav-item"><%= link_to "Find Friends", users_path, class: "nav-link" %></li>
          <li class="nav-item"><%= link_to "My Profile", user_path(current_user), class: "nav-link" %></li>
         
           <li class="nav-item dropdown">
