@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'likes/create'
   root 'users#index'
   devise_for :users
   resources :posts, only: %i[new create show destroy]
