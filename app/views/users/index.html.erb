@@ -16,13 +16,13 @@
         <% else %> <!-- If user is a friend -->
           <button class= "btn btn-success"> Friend </button>
         <% end %>
-      <% else %> <!-- If user not a friend and a request has been sent -->
+      <% else %> <!-- If user isn`t a friend and a request has been sent -->
         <button class= "btn btn-info" data-toggle="modal" data-target="#decisionModal">
           Pending Friend Request... 
         </button>
         <%= render 'friendships/decisionModal', object: user %>
       <% end %>
-    <% else %> <!-- If user not a friend and a request has been recieved -->
+    <% else %> <!-- If user isn`t a friend and a request has been recieved -->
       <button class= "btn btn-secondary" disabled> Friend Request pending... </button>
     <% end %>
   <% end %>
