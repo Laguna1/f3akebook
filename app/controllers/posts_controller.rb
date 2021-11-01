@@ -3,6 +3,21 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+
+    my_friends = Friendship.friends.where('sent_by_id =?',
+                                          current_user.id).or(Friendship.friends.where('sent_to_id =?',
+                                                                                       current_user.id))
+    friends = []
+    my_friends.each do |f|
+      friends << f.sent_to_id if f.sent_to_id != current_user.id
+      friends << f.sent_by_id if f.sent_by_id != current_user.id
+    end
+
+    @friends = []
+    @friends << User.find(current_user.id)
+    friends.each do |i|
+      @friends << User.find(i)
+    end
   end
 
   def show
