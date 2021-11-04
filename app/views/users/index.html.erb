@@ -1,31 +1,6 @@
-<h1 class="text-center mt-5">Users#index</h1>
-<h2>Users list</h2>
-<% @users.each do |user| %>
-<p class="text-success">
-  *** <%= link_to user_path(user) do %>
-    <%= user.fname %> <%= user.lname %>
-  <% end %> ***  |
-  
-  <% if current_user.id != user.id %>
-    <% unless friend_request_sent?(user) %> <!-- If user is not a friend and no request has been sent -->
-      <% unless friend_request_recieved?(user) %> <!-- If user is not a friend and no request has been recieved -->
-        <% unless friend_request_status?(user) %> <!-- If user is not a friend and but request has been recieved or sent -->
-          <%= link_to user_friendships_path(user), method: :post do %>
-            <button class= "btn btn-warning"> Send Friend Request? </button>
-          <% end %>
-        <% else %> <!-- If user is a friend -->
-          <button class= "btn btn-success"> Friend </button>
-        <% end %>
-      <% else %> <!-- If user isn`t a friend and a request has been sent -->
-        <button class= "btn btn-info" data-toggle="modal" data-target="#decisionModal">
-          Pending Friend Request... 
-        </button>
-        <%= render 'friendships/decisionModal', object: user %>
-      <% end %>
-    <% else %> <!-- If user isn`t a friend and a request has been recieved -->
-      <button class= "btn btn-secondary" disabled> Friend Request pending... </button>
-    <% end %>
+<h1 class="text-center mt-5">Users list</h1>
+<div class="container col-md-8">
+  <% @users.each do |user|%>
+    <%= render 'find_friends', object: user %>
   <% end %>
-  <br><br>
-<% end %>  
-<h4 class="text-center mt-5"><%= link_to 'Log Out', destroy_user_session_path, method: :delete  %> </h4>
+</div>
