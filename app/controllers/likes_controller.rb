@@ -4,10 +4,9 @@ class LikesController < ApplicationController
   include ApplicationHelper
 
   def create
-    type = type_subject?(params)
+    type = type_subject?(params)[0]
+    @subject = type_subject?(params)[1]
     notice_type = "like-#{type}"
-    @subject = Post.find(params[:post_id]) if type == 'post'
-    @subject = Comment.find(params[:comment_id]) if type == 'comment'
     return unless @subject
 
     if already_liked?(type)
@@ -32,7 +31,10 @@ class LikesController < ApplicationController
     type = 'post' if params.key?('post_id')
     type = 'comment' if params.key?('comment_id')
 
-    type
+    subject = Post.find(params[:post_id]) if type == 'post'
+    subject = Comment.find(params[:comment_id]) if type == 'comment'
+
+    [type, subject]
   end
 
   # Dislike the liked comment or post

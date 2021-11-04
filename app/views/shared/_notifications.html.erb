@@ -12,7 +12,7 @@
           <!-- If Notification type is a Friend Request -->
           <% if n.notice_type == "friendRequest"%>
             <% user = notification_find(n, 'friendRequest')%>
-            <%= "Friend Request sent from #{user.full_name}" %>
+            <%= "Friend Request sent from #{user.fname}  #{user.lname}" %>
           <% end %>
           <!-- If Notification type is a comment -->
           <% if n.notice_type == "comment"%>

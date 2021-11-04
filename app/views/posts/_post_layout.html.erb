@@ -1,17 +1,22 @@
-<%= object.content %>
-<%= render 'likes/like_posts', object: object %>
-<%= render 'comments/form', object: object %>
-<%object.comments.each do |c| %>
-  <%= c.user.fname %>
-  <%= c.user.lname %> 
-  <br>
-  <%= c.content %> 
-  
-  <br>
-  <%= render 'likes/like_comments', object: c %>
+
+<div class="col-md-8 mx-auto card bg-light">
+  <div class=" ">
+    <div class="font-weight-bold mt-2">
+      <%= object.user.fname %>
+      <%= object.user.lname %>
+    </div> <br>
+        
+    </div> 
+
+  <div class="border-bottom"><%= render 'likes/like_posts', object: object%></div>
+
+  <div class="mx-5">
+   <%= render 'comments/comment', object: object %>
+
+
+    <div class="  ">
+      <%= render 'comments/form', object: object %>
+    </div>
+  </div>
   <br><br>
-  <% if current_user.id == c.user_id %>
-  <%= link_to  "Delete comment", comment_path(c), method: :delete, data: { confirm: "You sure?" } %>
-  <% end %>
-<%end%>
-<br><br>
+</div> <br> <br> 
