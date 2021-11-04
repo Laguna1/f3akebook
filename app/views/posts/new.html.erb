@@ -1,6 +1,7 @@
 <h1 class="my-5 text-center text-warning">Posts#new</h1>
 <p>Find me in app/views/posts/new.html.erb</p>
 <%= form_for(@post) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @post %>
     Content: <%= f.text_area :content %><br />
     <%= f.submit 'New Post'%>
   <% end %>

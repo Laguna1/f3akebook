@@ -40,7 +40,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(post_id: params[:post_id]) if type == 'post'
     @like = Like.find_by(comment_id: params[:comment_id]) if type == 'comment'
     return unless @like
-    
+
     @like.destroy
     redirect_back(fallback_location: root_path)
   end
