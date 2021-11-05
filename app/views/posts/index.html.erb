@@ -1,17 +1,6 @@
 <h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
 <h2>All Posts (own and friends)</h2>
 
-<% @friends.each do |u| %>
-  <% u.posts.each do |p| %>
-    <%= p.user.fname %> <%= p.user.lname %>
-    <br>
-    <%= p.content %>
-    <br>
-    <%= render 'likes/like_posts', object: p %>
-    <%= render 'comments/form', object: p %>
-    <%= render 'comments/comment', object: p %>
-    <br><br>
-   
-  <% end %>
+<% @our_posts.each do |p|%>
+  <%= render 'posts/post_layout', object: p %>
 <% end %>

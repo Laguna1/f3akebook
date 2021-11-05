@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
+  include ApplicationHelper
+
   def create
-    type = type_subject?(params)
-    @subject = Post.find(params[:post_id]) if type == 'post'
-    @subject = Comment.find(params[:comment_id]) if type == 'comment'
+    type = type_subject?(params)[0]
+    @subject = type_subject?(params)[1]
+    notice_type = "like-#{type}"
+    return unless @subject
+
     if already_liked?(type)
       dislike(type)
     else
       @like = @subject.likes.build(user_id: current_user.id)
       if @like.save
         flash[:success] = "#{type} liked!"
+        @notification = new_notification(@subject.user, @subject.id, notice_type)
+        @notification.save
       else
         flash[:danger] = "#{type} like failed!"
       end
@@ -25,13 +31,18 @@ class LikesController < ApplicationController
     type = 'post' if params.key?('post_id')
     type = 'comment' if params.key?('comment_id')
 
-    type
+    subject = Post.find(params[:post_id]) if type == 'post'
+    subject = Comment.find(params[:comment_id]) if type == 'comment'
+
+    [type, subject]
   end
 
   # Dislike the liked comment or post
   def dislike(type)
     @like = Like.find_by(post_id: params[:post_id]) if type == 'post'
     @like = Like.find_by(comment_id: params[:comment_id]) if type == 'comment'
+    return unless @like
+
     @like.destroy
     redirect_back(fallback_location: root_path)
   end
