@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :fname, presence: true, length: { in: 3..15 }
   validates :lname, presence: true, length: { in: 3..15 }
 
-  def full_name
+  def fullname
     "#{fname} #{lname}"
   end
 
@@ -45,5 +45,5 @@ class User < ApplicationRecord
 
     our_posts
   end
-  
+
 end
